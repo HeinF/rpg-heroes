@@ -20,5 +20,11 @@ public class Main {
         Weapon copy = (Weapon) equipment.get(bow.slot);
         System.out.println(bow);
         System.out.println(copy);
+
+        Mage harry = new Mage("Potter");
+        System.out.println(harry.levelAttributes[0].intelligence);
+        harry.LevelUp();
+        System.out.println(harry.levelAttributes[0].intelligence);
+
     }
 }

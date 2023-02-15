@@ -8,7 +8,7 @@ public abstract class Hero {
 
     public String name;
     public int level;
-    public HeroAttribute[] LevelAttributes;
+    public HeroAttribute[] levelAttributes;
     public Map<Slot, Item> equipment;
     public List<WeaponType> validWeaponTypes;
 
@@ -25,7 +25,9 @@ public abstract class Hero {
         this.equipment.put(Slot.BODY, null);
         this.equipment.put(Slot.LEGS, null);
     }
-    public abstract void LevelUp();
+    public void LevelUp(){
+        this.levelAttributes[0].addAttribute(this.levelAttributes[1]);
+    }
     public abstract String EquipWeapon();
     public abstract String EquipArmor();
     public abstract double Damage();

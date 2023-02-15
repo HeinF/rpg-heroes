@@ -11,4 +11,10 @@ public class HeroAttribute {
         this.intelligence = intelligence;
     }
 
+    public void addAttribute(HeroAttribute toAdd){
+        this.strength += toAdd.strength;
+        this.dexterity += toAdd.dexterity;
+        this.intelligence += toAdd.intelligence;
+    }
+
 }

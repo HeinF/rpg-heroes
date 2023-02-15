@@ -3,11 +3,8 @@ package dk.experis;
 public class Mage extends Hero {
     protected Mage(String name) {
         super(name);
-    }
 
-    @Override
-    public void LevelUp() {
-
+        this.levelAttributes = new HeroAttribute[]{new HeroAttribute(1,1,8), new HeroAttribute(1,1,5)};
     }
 
     @Override
