@@ -17,4 +17,17 @@ public class HeroAttribute {
         this.intelligence += toAdd.intelligence;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(this == o){
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()){
+            return false;
+        }
+        HeroAttribute compareTo = (HeroAttribute) o;
+
+        return this.strength == compareTo.strength && this.dexterity == compareTo.dexterity && this.intelligence == compareTo.intelligence;
+    }
+
 }

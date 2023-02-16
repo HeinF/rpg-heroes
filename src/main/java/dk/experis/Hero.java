@@ -7,12 +7,14 @@ import java.util.Map;
 
 public abstract class Hero {
 
-    public String name;
-    public int level;
-    public HeroAttribute[] levelAttributes;
-    public Map<Slot, Item> equipment;
-    public List<WeaponType> validWeaponTypes;
-    public List<ArmorType> validArmorTypes;
+
+
+    private String name;
+    protected int level;
+    protected HeroAttribute[] levelAttributes;
+    protected Map<Slot, Item> equipment;
+    protected List<WeaponType> validWeaponTypes;
+    protected List<ArmorType> validArmorTypes;
 
 
 
@@ -27,22 +29,22 @@ public abstract class Hero {
         this.equipment.put(Slot.BODY, null);
         this.equipment.put(Slot.LEGS, null);
     }
-    public void LevelUp(){
+    public void levelUp(){
         this.levelAttributes[0].addAttribute(this.levelAttributes[1]);
         this.level++;
     }
-    public void Equip(Weapon weapon) {
-        if (!validWeaponTypes.contains(weapon.type)){
+    public void equip(Weapon weapon) {
+        if (!validWeaponTypes.contains(weapon.getType())){
             try {
-                throw new InvalidWeaponException("Your Hero cannot equip weapons of type: "+ weapon.type);
+                throw new InvalidWeaponException("Your Hero cannot equip weapons of type: "+ weapon.getType());
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
                 return;
             }
         }
-        if (this.level < weapon.requiredLevel){
+        if (this.level < weapon.getRequiredLevel()){
             try {
-                throw  new InvalidWeaponException("To equip this weapon you must be level "+ weapon.requiredLevel + " or more. You are currently level " + this.level);
+                throw  new InvalidWeaponException("To equip this weapon you must be level "+ weapon.getRequiredLevel() + " or more. You are currently level " + this.level);
             } catch (InvalidWeaponException e) {
                 System.out.println(e.getMessage());
                 return;
@@ -50,18 +52,18 @@ public abstract class Hero {
         }
         this.equipment.put(weapon.slot, weapon);
     }
-    public void Equip(Armor armor){
-        if (!validArmorTypes.contains(armor.type)){
+    public void equip(Armor armor){
+        if (!validArmorTypes.contains(armor.getType())){
             try {
-                throw new InvalidArmorException("Your Hero can't equip armor of type: " + armor.type);
+                throw new InvalidArmorException("Your Hero can't equip armor of type: " + armor.getType());
             } catch (InvalidArmorException e) {
                 System.out.println(e.getMessage());
                 return;
             }
         }
-        if (this.level < armor.requiredLevel){
+        if (this.level < armor.getRequiredLevel()){
             try {
-                throw new InvalidArmorException("To equip this armor you must be level " + armor.requiredLevel + " or more. You are currently level " + this.level);
+                throw new InvalidArmorException("To equip this armor you must be level " + armor.getRequiredLevel() + " or more. You are currently level " + this.level);
             } catch (InvalidArmorException e) {
                 System.out.println(e.getMessage());
                 return;
@@ -69,13 +71,13 @@ public abstract class Hero {
         }
         this.equipment.put(armor.slot, armor);
     }
-    public abstract double Damage();
-    public HeroAttribute TotalAttributes(){
+    public abstract double damage();
+    public HeroAttribute totalAttributes(){
         HeroAttribute totalAttributes = new HeroAttribute(0,0,0);
         totalAttributes.addAttribute(this.levelAttributes[0]);
         for(Map.Entry<Slot, Item> set : this.equipment.entrySet()){
             if (set.getKey() != Slot.WEAPON && set.getValue() != null){
-                totalAttributes.addAttribute(((Armor)set.getValue()).attribute);
+                totalAttributes.addAttribute(((Armor)set.getValue()).getAttribute());
             }
         }
         return totalAttributes;
@@ -85,14 +87,41 @@ public abstract class Hero {
         display.append("Name: "+ this.name);
         display.append(" Class: " + this.getClass().getSimpleName());
         display.append(" Level: " + this.level);
-        display.append(" Total strength: " + this.TotalAttributes().strength);
-        display.append(" Total dexterity: " + this.TotalAttributes().dexterity);
-        display.append(" Total intelligence: " + this.TotalAttributes().intelligence);
-        display.append(" Damage: " + this.Damage());
+        display.append(" Total strength: " + this.totalAttributes().strength);
+        display.append(" Total dexterity: " + this.totalAttributes().dexterity);
+        display.append(" Total intelligence: " + this.totalAttributes().intelligence);
+        display.append(" Damage: " + this.damage());
 
         System.out.println(display.toString());
-
-
-
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Map<Slot, Item> getEquipment() {
+        return equipment;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public HeroAttribute[] getLevelAttributes() {
+        return levelAttributes;
+    }
+
+    public List<WeaponType> getValidWeaponTypes() {
+        return validWeaponTypes;
+    }
+
+    public List<ArmorType> getValidArmorTypes() {
+        return validArmorTypes;
+    }
+
+
 }

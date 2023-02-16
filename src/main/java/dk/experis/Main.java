@@ -6,7 +6,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Map<Slot, Item> equipment = new HashMap<>();
+        /*Map<Slot, Item> equipment = new HashMap<>();
         equipment.put(Slot.WEAPON, null);
         equipment.put(Slot.HEAD, null);
         equipment.put(Slot.BODY, null);
@@ -34,7 +34,7 @@ public class Main {
 
         System.out.println(harry.Damage());
 
-        harry.Display();
+        harry.Display();*/
 
 
     }

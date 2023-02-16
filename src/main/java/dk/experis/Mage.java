@@ -11,12 +11,12 @@ public class Mage extends Hero {
     }
 
     @Override
-    public double Damage() {
+    public double damage() {
         double damage;
         if(this.equipment.get(Slot.WEAPON) != null){
-            damage = ((Weapon)this.equipment.get(Slot.WEAPON)).weaponDamage * (1 + (double)this.TotalAttributes().intelligence / 100);
+            damage = ((Weapon)this.equipment.get(Slot.WEAPON)).getWeaponDamage()* (1 + (double)this.totalAttributes().intelligence / 100);
         } else {
-            damage = 1 + (double)this.TotalAttributes().intelligence / 100;
+            damage = 1 + (double)this.totalAttributes().intelligence / 100;
         }
         return damage;
     }
