@@ -12,7 +12,7 @@ public class Main {
         equipment.put(Slot.BODY, null);
         equipment.put(Slot.LEGS, null);
 
-        Weapon bow = new Weapon("Falco", 1, Slot.WEAPON, WeaponType.BOW, 10);
+        Weapon bow = new Weapon("Falco", 2, WeaponType.WAND, 1);
 
         equipment.put(bow.slot, bow);
         System.out.println("Hello world!");
@@ -25,6 +25,17 @@ public class Main {
         System.out.println(harry.levelAttributes[0].intelligence);
         harry.LevelUp();
         System.out.println(harry.levelAttributes[0].intelligence);
+        harry.Equip(bow);
+        System.out.println(harry.TotalAttributes().intelligence);
+
+        Armor hat = new Armor("Sorting hat", 2, Slot.HEAD, ArmorType.CLOTH, new HeroAttribute(1,1,10));
+        harry.Equip(hat);
+        System.out.println(harry.TotalAttributes().intelligence);
+
+        System.out.println(harry.Damage());
+
+        harry.Display();
+
 
     }
 }
