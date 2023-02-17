@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dk.experis.WeaponTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-02-17T19:21:28" hostname="DESKTOP-KAM7GHR" time="0.014">
+  <properties/>
+  <testcase name="weaponCreated_getSlot_shouldReturnSlot()" classname="dk.experis.WeaponTest" time="0.01"/>
+  <testcase name="weaponCreated_getWeaponType_shouldReturnWeaponType()" classname="dk.experis.WeaponTest" time="0.0"/>
+  <testcase name="weaponCreated_getRequiredLevel_shouldReturnRequiredLevel()" classname="dk.experis.WeaponTest" time="0.001"/>
+  <testcase name="weaponCreated_getName_shouldReturnName()" classname="dk.experis.WeaponTest" time="0.001"/>
+  <testcase name="weaponCreated_getWeaponDamage_shouldReturnWeaponDamage()" classname="dk.experis.WeaponTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
