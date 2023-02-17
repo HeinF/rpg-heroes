@@ -5,60 +5,60 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MageTest {
+class RogueTest {
 
-    Hero mage;
+    Hero rouge;
 
     @BeforeEach
     void setup(){
-        mage = new Mage("Merlin");
+        rouge = new Rogue("Garrett");
     }
 
     @Test
-    void createMage_getBaseLevelAttributes_shouldReturnBaseLevelAttributes(){
+    void createRouge_getBaseLevelAttributes_shouldReturnBaseLevelAttributes(){
         // Arrange
-        HeroAttribute expected = new HeroAttribute(1,1,8);
+        HeroAttribute expected = new HeroAttribute(2,6,1);
 
         // Act
-        HeroAttribute actual = mage.getLevelAttributes()[0];
+        HeroAttribute actual = rouge.getLevelAttributes()[0];
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void createMage_getLevelGainAttributes_shouldReturnLevelGainAttributes(){
+    void createRouge_getLevelGainAttributes_shouldReturnLevelGainAttributes(){
         // Arrange
-        HeroAttribute expected = new HeroAttribute(1,1,5);
+        HeroAttribute expected = new HeroAttribute(1,4,1);
 
         // Act
-        HeroAttribute actual = mage.getLevelAttributes()[1];
+        HeroAttribute actual = rouge.getLevelAttributes()[1];
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void levelUpMage_getLevel_shouldReturnNewLevel(){
+    void levelUpRouge_getLevel_shouldReturnNewLevel(){
         // Arrange
         int expected = 2;
 
         // Act
-        mage.levelUp();
-        int actual = mage.getLevel();
+        rouge.levelUp();
+        int actual = rouge.getLevel();
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void levelUpMage_getAttributes_shouldReturnUpdatedAttributes(){
+    void levelUpRouge_getAttributes_shouldReturnUpdatedAttributes(){
         // Arrange
-        HeroAttribute expected = new HeroAttribute(2,2,13);
+        HeroAttribute expected = new HeroAttribute(3,10,2);
 
         // Act
-        mage.levelUp();
-        HeroAttribute actual = mage.getLevelAttributes()[0];
+        rouge.levelUp();
+        HeroAttribute actual = rouge.getLevelAttributes()[0];
 
         // Assert
         assertEquals(expected,actual);
@@ -67,11 +67,11 @@ class MageTest {
     @Test
     void equipWeapon_weaponOfWrongWeaponType_shouldThrowInvalidWeaponException(){
         // Arrange
-        Weapon sword = new Weapon("Excalibur", 1, WeaponType.SWORD, 35);
-        String expected = "Your Hero cannot equip weapons of type: SWORD";
+        Weapon bow = new Weapon("Longbow", 1, WeaponType.BOW, 8);
+        String expected = "Your Hero cannot equip weapons of type: BOW";
 
         // Act & Assert
-        Exception exception = assertThrows(InvalidWeaponException.class, () -> mage.equip(sword));
+        Exception exception = assertThrows(InvalidWeaponException.class, () -> rouge.equip(bow));
         String actual = exception.getMessage();
         assertEquals(expected, actual);
     }
@@ -83,7 +83,7 @@ class MageTest {
         String expected = "Your Hero can't equip armor of type: PLATE";
 
         // Act & Assert
-        Exception exception = assertThrows(InvalidArmorException.class, () -> mage.equip(armor));
+        Exception exception = assertThrows(InvalidArmorException.class, () -> rouge.equip(armor));
         String actual = exception.getMessage();
         assertEquals(expected, actual);
     }
@@ -91,10 +91,10 @@ class MageTest {
     @Test
     void damage_noWeaponEquipped_shouldReturnUnarmedDamage(){
         // Arrange
-        double expected = 1.08;
+        double expected = 1.06;
 
         // Act
-        double actual = mage.damage();
+        double actual = rouge.damage();
 
         // Assert
         assertEquals(expected, actual);
@@ -103,16 +103,16 @@ class MageTest {
     @Test
     void damage_WeaponEquipped_shouldReturnArmedDamage(){
         // Arrange
-        Weapon wand = new Weapon("Wand of Ronald Weasley", 1, WeaponType.WAND, 5);
-        double expected = 5.4;
+        Weapon dagger = new Weapon("Glamdring", 1, WeaponType.DAGGER, 7);
+        double expected = 7.42;
 
         // Act
         try {
-            mage.equip(wand);
+            rouge.equip(dagger);
         } catch (InvalidWeaponException e) {
             System.out.println(e.getMessage());
         }
-        double actual = mage.damage();
+        double actual = rouge.damage();
 
         // Assert
         assertEquals(expected, actual);
@@ -121,18 +121,18 @@ class MageTest {
     @Test
     void damage_WeaponReplacedEquipped_shouldReturnArmedDamage(){
         // Arrange
-        Weapon wand = new Weapon("Wand of Ronald Weasley", 1, WeaponType.WAND, 5);
-        Weapon wandReplacement = new Weapon("Second Wand of Ronald Weasley", 1, WeaponType.WAND, 9);
-        double expected = 9.72;
+        Weapon dagger = new Weapon("Glamdring", 1, WeaponType.DAGGER, 7);
+        Weapon daggerReplacement = new Weapon("Sgian-dubh", 1, WeaponType.DAGGER, 5);
+        double expected = 5.3;
 
         // Act
         try {
-            mage.equip(wand);
-            mage.equip(wandReplacement);
+            rouge.equip(dagger);
+            rouge.equip(daggerReplacement);
         } catch (InvalidWeaponException e) {
             System.out.println(e.getMessage());
         }
-        double actual = mage.damage();
+        double actual = rouge.damage();
 
         // Assert
         assertEquals(expected, actual);
@@ -141,37 +141,38 @@ class MageTest {
     @Test
     void damage_WeaponAndArmorEquipped_shouldReturnArmedDamageWithArmorBoost(){
         // Arrange
-        Weapon wand = new Weapon("Wand of Ronald Weasley", 1, WeaponType.WAND, 5);
-        Armor robe = new Armor("Robe of Merlin's Apprentice", 1, Slot.BODY, ArmorType.CLOTH, new HeroAttribute(2, 5, 8));
-        double expected = 5.8;
+        Weapon dagger = new Weapon("Glamdring", 1, WeaponType.DAGGER, 7);
+        Armor mail = new Armor("Chain mail", 1, Slot.BODY, ArmorType.MAIL, new HeroAttribute(3, 9, 1));
+        double expected = 8.05;
 
         // Act
         try {
-            mage.equip(wand);
+            rouge.equip(dagger);
         } catch (InvalidWeaponException e) {
             System.out.println(e.getMessage());
         }
         try {
-            mage.equip(robe);
+            rouge.equip(mail);
         } catch (InvalidArmorException e) {
             System.out.println(e.getMessage());
         }
 
-        double actual = mage.damage();
+        double actual = rouge.damage();
 
         // Assert
         assertEquals(expected, actual);
     }
 
     @Test
-    void display_displayMage_shouldReturnDisplayString(){
+    void display_displayRogue_shouldReturnDisplayString(){
         // Arrange
-        String expected = "Name: Merlin Class: Mage Level: 1 Total strength: 1 Total dexterity: 1 Total intelligence: 8 Damage: 1.08";
+        String expected = "Name: Garrett Class: Rogue Level: 1 Total strength: 2 Total dexterity: 6 Total intelligence: 1 Damage: 1.06";
 
         // Act
-        String actual = mage.display();
+        String actual = rouge.display();
 
         // Assert
         assertEquals(expected, actual);
     }
+
 }

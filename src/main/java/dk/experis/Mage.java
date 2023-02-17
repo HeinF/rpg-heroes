@@ -18,7 +18,7 @@ public class Mage extends Hero {
         } else {
             damage = 1 + (double)this.totalAttributes().intelligence / 100;
         }
-        return damage;
+        return Math.round(damage * 100.0) / 100.0;
     }
 
 }

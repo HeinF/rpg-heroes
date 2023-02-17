@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WeaponTest {
 
-    Weapon weapon;
+    Item weapon;
     @BeforeEach
     void setup(){
         weapon = new Weapon("Excalibur", 100, WeaponType.SWORD, 35);
@@ -51,7 +51,7 @@ class WeaponTest {
         WeaponType expected = WeaponType.SWORD;
 
         //Act
-        WeaponType actual = weapon.getType();
+        WeaponType actual = ((Weapon)weapon).getType();
 
         // Assert
         assertEquals(expected, actual);
@@ -63,7 +63,7 @@ class WeaponTest {
         double expected = 35;
 
         //Act
-        double actual = weapon.getWeaponDamage();
+        double actual = ((Weapon)weapon).getWeaponDamage();
         // Assert
         assertEquals(expected, actual);
     }

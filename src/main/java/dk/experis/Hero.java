@@ -33,41 +33,22 @@ public abstract class Hero {
         this.levelAttributes[0].addAttribute(this.levelAttributes[1]);
         this.level++;
     }
-    public void equip(Weapon weapon) {
+    public void equip(Weapon weapon) throws InvalidWeaponException {
         if (!validWeaponTypes.contains(weapon.getType())){
-            try {
                 throw new InvalidWeaponException("Your Hero cannot equip weapons of type: "+ weapon.getType());
-            } catch (InvalidWeaponException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
         }
         if (this.level < weapon.getRequiredLevel()){
-            try {
                 throw  new InvalidWeaponException("To equip this weapon you must be level "+ weapon.getRequiredLevel() + " or more. You are currently level " + this.level);
-            } catch (InvalidWeaponException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
         }
         this.equipment.put(weapon.slot, weapon);
     }
-    public void equip(Armor armor){
+    public void equip(Armor armor) throws InvalidArmorException {
         if (!validArmorTypes.contains(armor.getType())){
-            try {
                 throw new InvalidArmorException("Your Hero can't equip armor of type: " + armor.getType());
-            } catch (InvalidArmorException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
+
         }
         if (this.level < armor.getRequiredLevel()){
-            try {
                 throw new InvalidArmorException("To equip this armor you must be level " + armor.getRequiredLevel() + " or more. You are currently level " + this.level);
-            } catch (InvalidArmorException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
         }
         this.equipment.put(armor.slot, armor);
     }
@@ -82,7 +63,7 @@ public abstract class Hero {
         }
         return totalAttributes;
     }
-    public void Display(){
+    public String display(){
         StringBuilder display = new StringBuilder();
         display.append("Name: "+ this.name);
         display.append(" Class: " + this.getClass().getSimpleName());
@@ -92,7 +73,7 @@ public abstract class Hero {
         display.append(" Total intelligence: " + this.totalAttributes().intelligence);
         display.append(" Damage: " + this.damage());
 
-        System.out.println(display.toString());
+        return display.toString();
     }
 
     public String getName() {
