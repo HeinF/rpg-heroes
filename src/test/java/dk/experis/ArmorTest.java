@@ -1,5 +1,10 @@
 package dk.experis;
 
+import dk.experis.enums.ArmorType;
+import dk.experis.enums.Slot;
+import dk.experis.heroes.HeroAttribute;
+import dk.experis.items.Armor;
+import dk.experis.items.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,8 @@
 package dk.experis;
+import dk.experis.enums.Slot;
+import dk.experis.enums.WeaponType;
+import dk.experis.items.Item;
+import dk.experis.items.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

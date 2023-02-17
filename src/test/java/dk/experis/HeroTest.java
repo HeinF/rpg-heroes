@@ -1,5 +1,15 @@
 package dk.experis;
 
+import dk.experis.enums.ArmorType;
+import dk.experis.enums.Slot;
+import dk.experis.enums.WeaponType;
+import dk.experis.exceptions.InvalidArmorException;
+import dk.experis.exceptions.InvalidWeaponException;
+import dk.experis.heroes.Hero;
+import dk.experis.heroes.HeroAttribute;
+import dk.experis.heroes.Mage;
+import dk.experis.items.Armor;
+import dk.experis.items.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -135,29 +145,5 @@ class HeroTest {
 
         // Assert
         assertEquals(expected, actual);
-    }
-
-    @Test
-    void levelUp() {
-    }
-
-    @Test
-    void equip() {
-    }
-
-    @Test
-    void testEquip() {
-    }
-
-    @Test
-    void damage() {
-    }
-
-    @Test
-    void totalAttributes() {
-    }
-
-    @Test
-    void display() {
     }
 }

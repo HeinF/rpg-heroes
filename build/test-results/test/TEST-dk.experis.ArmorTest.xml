@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dk.experis.ArmorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-17T09:06:36" hostname="DESKTOP-KAM7GHR" time="0.014">
-  <properties/>
-  <testcase name="weaponCreated_getSlot_shouldReturnSlot()" classname="dk.experis.ArmorTest" time="0.014"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
